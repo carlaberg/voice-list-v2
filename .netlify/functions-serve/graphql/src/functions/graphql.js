@@ -51912,7 +51912,7 @@ var typeDefs = gql`
 `;
 var resolvers = {
   Query: {
-    hello: () => "Hello feature-branch!"
+    hello: () => "Hello feature-branch changed to two package jsons!"
   }
 };
 var server = new ApolloServer({ typeDefs, resolvers });
