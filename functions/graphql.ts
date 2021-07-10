@@ -12,7 +12,7 @@ const typeDefs = gql`
 // Provide resolver functions for your schema fields
 const resolvers = {
   Query: {
-    hello: () => 'Hello feature-branch!',
+    hello: () => 'Hello feature-branch changed to two package jsons!',
   },
 };
 
