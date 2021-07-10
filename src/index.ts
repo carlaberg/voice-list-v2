@@ -12,4 +12,4 @@ client
       }
     `
   })
-  .then((result: any) => console.log(result));
+  .then((result) => console.log(result));
