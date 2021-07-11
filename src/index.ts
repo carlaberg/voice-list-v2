@@ -4,12 +4,12 @@ import { gql } from "@apollo/client";
 
 bootstrap();
 
-client
-  .query({
-    query: gql`
-      query {
-        hello
-      }
-    `
-  })
-  .then((result) => console.log(result));
+// client
+//   .query({
+//     query: gql`
+//       query {
+//         hello
+//       }
+//     `
+//   })
+//   .then((result) => console.log(result));

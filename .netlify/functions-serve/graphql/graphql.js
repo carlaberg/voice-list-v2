@@ -1,1 +1,1 @@
-module.exports = require('./src/functions/graphql.js')
+module.exports = require('./src/functions/graphql/graphql.js')
