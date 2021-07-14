@@ -1,20 +1,28 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import MainLayout from './layout/MainLayout';
+import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
 
-class App extends React.Component {
+export default class App extends React.Component {
   render() {
     return (
-      <div>
-        Hello feature branch
-      </div>
+      <Router>
+        <MainLayout>
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route path="/dashboard">
+                <Dashboard />
+              </Route>
+            </Switch>      
+        </MainLayout>
+      </Router>
     );
   }
-}
-
-
-export const bootstrap = () => {
-  ReactDOM.render(
-    <App />,
-    document.getElementById('root')
-  );
 }
