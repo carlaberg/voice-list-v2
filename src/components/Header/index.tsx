@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useQuery } from "@apollo/client";
 import { Toggle, Modal } from 'carls-components'
 import { Transition, animated } from 'react-spring'
@@ -15,6 +15,9 @@ const Header = props => {
   const { loading, error, data, refetch } = useQuery(LOGGED_IN_USER, {
     fetchPolicy: "network-only"
   });
+
+  let history = useHistory();
+  let location = useLocation();
 
   if (loading) return null
   if (error) return null
@@ -35,7 +38,7 @@ const Header = props => {
                   formType="create" 
                   title="Create a new account" 
                   toggleModal={toggle}
-                  onSubmitSuccess={props => console.log(props)}
+                  onSubmitSuccess={() => history.replace('/dashboard')}
                   />}
                 </Modal>
               </React.Fragment>
@@ -53,7 +56,7 @@ const Header = props => {
                       formType="login"
                       title="Sign in to your account"
                       toggleModal={toggle}
-                      onSubmitSuccess={props => props.history.replace('/dashboard')}
+                      onSubmitSuccess={() => history.replace('/dashboard')}
                     />
                   )}
                 </Modal>
@@ -74,7 +77,7 @@ const Header = props => {
               type="link"
               theme="light"
               href="/dashboard"
-              active={props.location.pathname === '/dashboard'}
+              active={location.pathname === '/dashboard'}
             >
               Dashboard
             </Button>
@@ -82,7 +85,7 @@ const Header = props => {
               theme="light"
               onClick={() => {
                 localStorage.removeItem('graphcoolToken');
-                props.history.replace('/');
+                history.replace('/');
                 setTimeout(() => refetch(), 500);
               }}
             >
@@ -107,4 +110,4 @@ const Header = props => {
   );
 };
 
-export default withRouter(Header);
+export default Header;
