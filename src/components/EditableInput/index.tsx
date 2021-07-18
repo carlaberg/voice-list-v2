@@ -1,8 +1,26 @@
+import React from 'react';
 import {
   InputWrapper, StyledInput, Underline, Message, Indicator
-} from './styles'
+} from './styles';
 
-class EditableInput extends React.Component {
+interface EditableInputProps {
+  className?: string;
+  isFocused: boolean;
+  message?: string;
+  valid?: boolean; 
+  showMessage?: boolean; 
+  onBlur?: () => void;
+  onChange?: (e: any) => void;
+}
+
+interface EditableInputState {
+  editable: boolean;
+  showIndicators: boolean;
+}
+
+class EditableInput extends React.Component<EditableInputProps, EditableInputState> {
+  private input: React.RefObject<HTMLElement>;
+
   constructor(props) {
     super(props)
     
@@ -39,6 +57,7 @@ class EditableInput extends React.Component {
         onClick={() => this.setState({ showIndicators: true })}
       >
         <StyledInput
+          // @ts-ignore
           ref={this.input}
           editable={editable}
           {...this.props}

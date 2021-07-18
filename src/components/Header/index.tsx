@@ -74,16 +74,15 @@ const Header = props => {
               type="link"
               theme="light"
               href="/dashboard"
-              active={props.router.pathname === '/dashboard'}
+              active={props.location.pathname === '/dashboard'}
             >
-              {console.log(props)}
               Dashboard
             </Button>
             <Button
               theme="light"
               onClick={() => {
                 localStorage.removeItem('graphcoolToken');
-                props.router.replace('/');
+                props.history.replace('/');
                 setTimeout(() => refetch(), 500);
               }}
             >

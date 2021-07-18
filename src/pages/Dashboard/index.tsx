@@ -18,7 +18,7 @@ const Dashboard = () => (
         <Tabs>
           <Tab id="1" title="Lists"><ListListing /></Tab>
           <Tab id="2" title="Create List"><ListMaker /></Tab>
-          {/* <Tab id="3" title="Settings"><Settings /></Tab> */}
+          <Tab id="3" title="Settings"><Settings /></Tab>
         </Tabs>
       </HalignSmall>
     </Section>

@@ -4,7 +4,11 @@ import {
 } from './styles';
 import Portal from '../Portal';
 
-const Spinner = ({ loading }) => {
+interface SpinnerProps {
+  loading?: boolean;
+}
+
+const Spinner = ({ loading }: SpinnerProps) => {
   return (
     <Portal selector="#modal">
       <SpinnerWrapper loading={loading}>

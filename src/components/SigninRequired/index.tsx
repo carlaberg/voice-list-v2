@@ -12,6 +12,8 @@ const SigninRequired = props => {
     if (loading) return null
     if (error) return `Error! ${error.message}`
 
+    console.log(loading, error, data)
+
     if (!data.loggedInUser.userId) {
       return (
         <Toggle initial>

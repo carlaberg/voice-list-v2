@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { FontLarge, FontMedium } from '../../layout/mixins'
+
 import MenuArrowRightIcon from '../../layout/icons/menu-arrow-right.svg'
 import TrashIcon from '../../layout/icons/trash.svg'
 import EditIcon from '../../layout/icons/edit.svg'

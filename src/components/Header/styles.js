@@ -33,19 +33,13 @@ export const ButtonWrapper = styled(animated.div)`
 `
 
 export const LoginButtons = styled(animated.div)`
-  position: absolute;
   display: flex;
-  top: 50%;
-  transform: translateY(50%);
   right: 0;
 `
 
 export const SignoutButton = styled(animated.div)`
-  position: absolute;
   display: flex;
   align-items: center;
-  top: 50%;
-  transform: translateY(50%);
   right: 0;
 
   a {

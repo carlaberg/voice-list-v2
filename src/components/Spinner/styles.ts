@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { FontSmall } from '../../layout/mixins'
 
 export const SpinnerWrapper = styled.div<{
-  loading: boolean
+  loading: boolean;
 }>`
   width: 100%;
   height: 100%;

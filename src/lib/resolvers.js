@@ -1,4 +1,5 @@
-import LISTS from '../queries/lists.ts'
+import LISTS from '../queries/lists'
+import { gql } from "@apollo/client";
 
 export const clientSideResolvers = {
   Mutation: {
@@ -8,17 +9,43 @@ export const clientSideResolvers = {
         name: args.name,
         items: args.items
       }
-      cache.writeData({ data: { currentList } })
+      cache.writeQuery({ 
+        query: gql`
+          query GetCurrentList {
+            currentList
+          }
+        `,        
+        data: { currentList } 
+      })
 
       return currentList
     },
     updateListVisibilityFilter: (_, args, { cache }) => {
       const { userLists } = cache.readQuery({ query: LISTS })
 
-      const itemToUpdate = userLists.find((item) => item._id == args.id)
+      const itemToUpdate = userLists.findIndex((item) => item._id == args.id);
+      const itemsBefore = userLists.slice(0, itemToUpdate);
+      const itemsAfter = userLists.slice(itemToUpdate + 1);
+
+      const updatedList = [
+        ...itemsBefore,
+        {
+          ...userLists[itemToUpdate],
+          open: !userLists[itemToUpdate].open
+        },
+        ...itemsAfter
+      ];
       
-      itemToUpdate.open = !itemToUpdate.open
-      cache.writeData({ data: { userLists } })
+      cache.writeQuery({
+        query: gql`
+          query GetUserLists {
+            userLists
+          }
+        `,
+        data: { 
+          userLists: updatedList
+         } 
+      })
 
       return userLists
     }

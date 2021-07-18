@@ -39,9 +39,9 @@ const Settings = () => {
   }, [userData])
 
 
-  if (userLoading) return 'loading'
-  if (userError) return 'error'
-  if (!userData) return 'no data'
+  if (userLoading) return <div>loading</div>
+  if (userError) return <div>error</div>
+  if (!userData) return <div>no data</div>
 
   return (
     <>

@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
-import { useQuery, useMutation, gql } from 'react-apollo'
+import React, { useEffect, useState } from 'react'
+import { useQuery, useMutation, gql } from '@apollo/client'
 import { apolloClient as client } from '../../lib/init-apollo'
 import debounce from 'just-debounce-it'
-import LISTS from '../../queries/lists.ts'
-import DELETE_LIST_AND_ITEMS from '../../queries/deleteListAndItems.ts'
-import DELETE_LIST_ITEM from '../../queries/deleteListItem.ts'
-import UPDATE_LIST_VISIBILITY_FILTER from '../../queries/updateListVisibilityFilter.ts'
-import UPDATE_LIST_ITEM from '../../queries/updateListItem.ts'
+import LISTS from '../../queries/lists'
+import DELETE_LIST_AND_ITEMS from '../../queries/deleteListAndItems'
+import DELETE_LIST_ITEM from '../../queries/deleteListItem'
+import UPDATE_LIST_VISIBILITY_FILTER from '../../queries/updateListVisibilityFilter'
+import UPDATE_LIST_ITEM from '../../queries/updateListItem'
 import { groupBy, values } from 'lodash'
 import { Toggle, Modal } from 'carls-components'
 import {
@@ -35,7 +35,7 @@ const ListListing = () => {
     data: listsData
   } = useQuery(LISTS)
 
-  const [deleteListAndItems, { deleteListAndItemsData }] = useMutation(
+  const [deleteListAndItems, { data: deleteListAndItemsData }] = useMutation(
     DELETE_LIST_AND_ITEMS, {
       update(cache, { data: { deleteListAndItems: deletedList } }) {
         const { userLists } = cache.readQuery({ query: LISTS })
@@ -48,13 +48,13 @@ const ListListing = () => {
     }
   )
 
-  const [deleteListItem, { deleteListItemData }] = useMutation(DELETE_LIST_ITEM, {
+  const [deleteListItem, { data: deleteListItemData }] = useMutation(DELETE_LIST_ITEM, {
     refetchQueries: [{ query: LISTS }]
   })
 
-  const [updateListItem, { updateListItemData }] = useMutation(UPDATE_LIST_ITEM)
+  const [updateListItem, { data: updateListItemData }] = useMutation(UPDATE_LIST_ITEM)
 
-  const [updateListVisibilityFilter, { updateListVisibilityFilterData }] = useMutation(UPDATE_LIST_VISIBILITY_FILTER)
+  const [updateListVisibilityFilter, { data: updateListVisibilityFilterData }] = useMutation(UPDATE_LIST_VISIBILITY_FILTER)
   const [activeInput, setactiveInput] = useState(null)
 
   const handleListItemChange = debounce((id, value) => {
@@ -104,12 +104,14 @@ const ListListing = () => {
             <List key={list._id}>
               {list.items.map((item, itemIndex) => (
                 <ListItem
+                  // @ts-ignore
                   ref={itemInput}
                   className={activeInput === item._id ? 'active' : ''} 
                   key={item._id}
                   onClick={() => setactiveInput(item._id)}
                 >
                   <StyledEditableInput
+                    // @ts-ignore
                     defaultValue={item.text}
                     isFocused={activeInput === item._id}
                     onBlur={() => setactiveInput(null)}

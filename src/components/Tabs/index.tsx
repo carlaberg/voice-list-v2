@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 import styled from 'styled-components'
 import { FontMedium } from '../../layout/mixins'
 import { StyledButton } from '../Button/styles'
@@ -22,7 +22,9 @@ const TabNavList = styled.ul`
   display: flex;
 `
 
-const TabNavItem = styled(StyledButton)`
+const TabNavItem = styled(StyledButton)<{
+  active: boolean;
+}>`
   ${({ active }) => active ? buttonTheme.dark : buttonTheme.light}
   position: relative;
   line-height: 2em;
@@ -61,7 +63,15 @@ const TabNavItem = styled(StyledButton)`
   }
 `
 
-class Tabs extends React.Component {
+interface TabsProps {
+  children?: ReactElement[]
+}
+
+interface TabsState {
+  activeTab: ReactElement
+}
+
+class Tabs extends React.Component<TabsProps, TabsState> {
   constructor(props) {
     super(props)
 
@@ -77,6 +87,7 @@ class Tabs extends React.Component {
   render() {
     const { children } = this.props
     const { activeTab } = this.state
+
     return (
       <TabsContainer>
         <TabNavigation>

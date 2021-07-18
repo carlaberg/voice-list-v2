@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react'
-import { useQuery, useMutation } from 'react-apollo'
+import React, { useState, useEffect } from 'react'
+import { useQuery, useMutation } from '@apollo/client'
 import gql from 'graphql-tag'
 import debounce from 'just-debounce-it'
 import {
   Wrapper, ListInput, Form, SubmitButton, ListItem, InputGroup
 } from './styles'
-import CREATE_LIST_WITH_ITEMS from '../../queries/createListWithItems.ts'
-import CURRENT_LIST from '../../queries/currentList.ts'
-import GET_LISTS from '../../queries/lists.ts'
+import CREATE_LIST_WITH_ITEMS from '../../queries/createListWithItems'
+import CURRENT_LIST from '../../queries/currentList'
+import GET_LISTS from '../../queries/lists'
 import Card from '../Card'
 
 const UPDATE_CURRENT_LIST = gql`

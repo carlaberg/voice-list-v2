@@ -11,17 +11,18 @@ import {
 } from './styles';
 
 interface InputProps {
-  name?: string,
-  type?: string,
-  placeholder?: string,
-  onChange: (e: any) => void,
-  value: string,
-  message?: string,
-  valid?: boolean,
-  showMessage?: boolean,
-  label?: string,
-  allowIndicators?: boolean,
-  className?: string
+  name?: string;
+  type?: string;
+  placeholder?: string;
+  onChange?: (e: any) => void;
+  onBlur?: (e: any) => void;
+  value: string;
+  message?: string;
+  valid?: boolean;
+  showMessage?: boolean;
+  label?: string;
+  allowIndicators?: boolean;
+  className?: string;
 }
 
 interface InputState {

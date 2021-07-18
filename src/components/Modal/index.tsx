@@ -1,9 +1,16 @@
-import React, { Component } from "react";
+import React, { Component, ReactNode } from "react";
 import { Transition, config } from "react-spring";
 import { ModalWrapper, Overlay, ModalContent } from "./styles";
 import Portal from "../Portal";
 
-class Modal extends Component {
+interface ModalProps {
+  children: () => ReactNode;
+  toggle: () => void;
+  on: boolean,
+  closeOnContentClick?: boolean;
+}
+
+class Modal extends Component<ModalProps> {
   handleClick() {
     const { toggle, on } = this.props;
     if (on) {
@@ -12,7 +19,7 @@ class Modal extends Component {
   }
 
   render() {
-    const { children, toggle, on, closeOnContentClick } = this.props;
+    const { children, toggle, on, closeOnContentClick = true } = this.props;
     return (
       <Transition
         native
@@ -28,6 +35,7 @@ class Modal extends Component {
                   !closeOnContentClick && this.handleClick();
                 }}
                 style={{
+                  // @ts-ignore
                   opacity: styles.opacity.interpolate(opacity => opacity)
                 }}
               >
@@ -38,11 +46,14 @@ class Modal extends Component {
                 />
                 <ModalContent
                   style={{
+                    // @ts-ignore
                     opacity: styles.opacity.interpolate(opacity => opacity),
+                    // @ts-ignore
                     transform: styles.y.interpolate(
                       y => `translate3d(0, ${y}, 0)`
                     )
                   }}
+                  // @ts-ignore
                   config={config.fast}
                 >
                   {children()}
@@ -54,9 +65,5 @@ class Modal extends Component {
     );
   }
 }
-
-Modal.defaultProps = {
-  closeOnContentClick: true
-};
 
 export default Modal;
