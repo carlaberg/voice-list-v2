@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Toggle, Modal } from 'carls-components';
 import AuthForm from '../../components/AuthForm';
@@ -18,11 +19,11 @@ export const LogoWrapper = styled.div`
   align-items: center;
 `;
 
-// export const StyledLogo = styled(Logo)`
-//   width: 13rem;
-//   height: 13rem;
-//   margin-bottom: ${({ theme }) => theme.gutterSmall};
-// `
+export const StyledLogo = styled(Logo)`
+  width: 13rem;
+  height: 13rem;
+  margin-bottom: ${({ theme }) => theme.gutterSmall};
+`
 
 export const Title = styled.div`
   color: ${({ theme }) => theme.colorAccent};
@@ -39,33 +40,39 @@ export const Tagline = styled.span`
   margin-bottom: ${({ theme }) => theme.gutter};
 `
 
-export default () => (
-  <Section>
-    <HalignSmall>
-      <LogoWrapper>
-        {/* <StyledLogo /> */}
-        <Title>Voice List</Title>
-        <Tagline>Create lists by dictating the list items</Tagline>
-        <Toggle>
-          {({ on, toggle }) => (
-            <React.Fragment>
-              {/* <Button theme="light" onClick={toggle}>
-                Start now
-              </Button> */}
-              {/* <Modal toggle={toggle} on={on}>
-                {() => (
-                  <AuthForm
-                    formType="create"
-                    title="Create a new account"
-                    toggleModal={toggle}
-                    onSubmitSuccess={props => props.router.replace('/dashboard')}
-                  />
-                )}
-              </Modal> */}
-            </React.Fragment>
-          )}
-        </Toggle>
-      </LogoWrapper>
-    </HalignSmall>
-  </Section>
-)
+const Home = () => {
+  let history = useHistory();
+  
+  return (
+    <Section>
+      <HalignSmall>
+        <LogoWrapper>
+          {/* @ts-ignore */}
+          <StyledLogo />
+          <Title>Voice List</Title>
+          <Tagline>Create lists by dictating the list items</Tagline>
+          <Toggle>
+            {({ on, toggle }) => (
+              <React.Fragment>
+                <Button theme="light" onClick={toggle}>
+                  Start now
+                </Button>
+                <Modal toggle={toggle} on={on}>
+                  {() => (
+                    <AuthForm
+                      formType="create"
+                      title="Create a new account"
+                      toggleModal={toggle}
+                      onSubmitSuccess={() => history.replace('/dashboard')}
+                    />
+                  )}
+                </Modal>
+              </React.Fragment>
+            )}
+          </Toggle>
+        </LogoWrapper>
+      </HalignSmall>
+    </Section>
+  )
+}
+export default Home;
