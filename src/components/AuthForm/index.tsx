@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { gql, useMutation } from '@apollo/client';
-// import { withRouter } from 'react-router-dom';
-// import { Mutation } from '@apollo/react-components'
+import { useMutation } from '@apollo/client';
 import {
   FormWrapper, FormTitle, InputGroup, BackendMessage
 } from './styles';
@@ -14,29 +12,11 @@ import Spinner from '../Spinner';
 import validate from '../../utils/validate';
 import * as variables from '../../style/variables';
 
-interface AuthFormQueries {
-  create: any,
-  login: any
-}
-
 interface AuthFormProps {
   formType: string,
   title: string,
   toggleModal: () => void,
   onSubmitSuccess: () =>  void
-}
-
-interface AuthFormState {
-  email: string,
-  emailValid: boolean,
-  emailMessage: string
-  emailShowMessage: boolean,
-  password: string,
-  passwordValid: boolean,
-  passwordMessage: string,
-  passwordShowMessage: boolean,
-  loading: boolean,
-  backendMessage: string
 }
 
 const AuthForm = ({ formType, title, toggleModal, onSubmitSuccess }: AuthFormProps) => {
