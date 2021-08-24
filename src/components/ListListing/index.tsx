@@ -19,6 +19,7 @@ import {
   ItemIconGroup,
   StyledEditableInput,
   MenuArrow,
+  VerticalDots,
   Trash,
   Edit
 } from './styles'
@@ -98,6 +99,7 @@ const ListListing = () => {
                     </React.Fragment>
                   )}
                 </Toggle>
+                <VerticalDots />
                 <MenuArrow />
               </IconGroup>
             </Heading2>

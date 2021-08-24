@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { FontLarge, FontMedium } from '../../layout/mixins'
 
 import MenuArrowRightIcon from '../../layout/icons/menu-arrow-right.svg'
+import VerticalDotsIcon from '../../layout/icons/vertical-dots.svg'
 import TrashIcon from '../../layout/icons/trash.svg'
 import EditIcon from '../../layout/icons/edit.svg'
 import EditableInput from '../EditableInput'
@@ -46,6 +47,10 @@ export const IconGroup = styled.div`
 
   svg:first-of-type {
     margin: 0;
+  }
+
+  svg:hover {
+    fill: ${({ theme }) => theme.colorGray}
   }
 `
 
@@ -119,6 +124,11 @@ export const MenuArrow = styled(MenuArrowRightIcon)`
   .list--open & {
     transform: rotate(90deg);
   }  
+`
+
+export const VerticalDots = styled(VerticalDotsIcon)`
+  width: ${({ theme }) => theme.iconSize};
+  height: ${({ theme }) => theme.iconSize};
 `
 
 export const Trash = styled(TrashIcon)`
