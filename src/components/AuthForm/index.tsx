@@ -96,82 +96,56 @@ const AuthForm = ({ formType, title, toggleModal, onSubmitSuccess }: AuthFormPro
   });
 
   return (
-    // <Mutation
-    //   mutation={this.queries[formType]}
-    //   variables={{input: {
-    //     email,
-    //     password
-    //   }}}
-    //   errorPolicy="all"
-    // >
-    //   {(handleUser) => (
-        <FormWrapper
-          id="auth-form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            updateMessages();
+    <FormWrapper
+      id="auth-form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        updateMessages();
 
-            if (!validate.email(email) || !validate.password(password)) return;
+        if (!validate.email(email) || !validate.password(password)) return;
 
-              setLoading(true)
-              handleUser({
-                variables: {
-                  input: {
-                    email,
-                    password
-                  }
-                }
-              })
-              // .then((user) => {
-              //   this.setState({ loading: false });
-              //   localStorage.setItem('graphcoolToken', user.data[`${formType}User`].token);
-              //   this.resetForm();
-              //   toggleModal();
-              //   setTimeout(() => {
-              //     if (typeof onSubmitSuccess === 'function') {
-              //       onSubmitSuccess(this.props)
-              //     }
-              //   }, 1000);
-              // })
-              // .catch((error) => {
-              //   console.log(error);
-              //   this.setState({ loading: false });
-              // });
-          }}
-        >
-          {/* <Spinner loading={loading} /> */}
-          <FormTitle>{title}</FormTitle>
-          <InputGroup>
-            <Input
-              name="email"
-              type="email"
-              placeholder="E-mail"
-              onChange={e => handleChange(e)}
-              value={email}
-              valid={emailValid}
-              showMessage={emailShowMessage}
-              message={emailMessage}
-            />
-            <Input
-              name="password"
-              type="password"
-              placeholder="Password"
-              onChange={e => handleChange(e)}
-              value={password}
-              valid={passwordValid}
-              showMessage={passwordShowMessage}
-              message={passwordMessage}
-            />
-          </InputGroup>
-          <BackendMessage>
-            {/* {error && error.graphQLErrors.map(item => item.functionError.message)} */}
-          </BackendMessage>
-          <Button type="submit" theme="light">
-            {formType === 'create' ? 'sign up' : 'sign in'}
-          </Button>
-        </FormWrapper>
-    //   )}
-    // </Mutation>
+          setLoading(true)
+          handleUser({
+            variables: {
+              input: {
+                email,
+                password
+              }
+            }
+          })
+      }}
+    >
+      <Spinner loading={loading} />
+      <FormTitle>{title}</FormTitle>
+      <InputGroup>
+        <Input
+          name="email"
+          type="email"
+          placeholder="E-mail"
+          onChange={e => handleChange(e)}
+          value={email}
+          valid={emailValid}
+          showMessage={emailShowMessage}
+          message={emailMessage}
+        />
+        <Input
+          name="password"
+          type="password"
+          placeholder="Password"
+          onChange={e => handleChange(e)}
+          value={password}
+          valid={passwordValid}
+          showMessage={passwordShowMessage}
+          message={passwordMessage}
+        />
+      </InputGroup>
+      <BackendMessage>
+        {/* {error && error.graphQLErrors.map(item => item.functionError.message)} */}
+      </BackendMessage>
+      <Button type="submit" theme="light">
+        {formType === 'create' ? 'sign up' : 'sign in'}
+      </Button>
+    </FormWrapper>
   );
 }
 // @ts-ignore
