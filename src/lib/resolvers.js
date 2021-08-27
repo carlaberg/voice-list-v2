@@ -31,7 +31,7 @@ export const clientSideResolvers = {
         ...itemsBefore,
         {
           ...userLists[itemToUpdate],
-          open: !userLists[itemToUpdate].open
+          ...args.input
         },
         ...itemsAfter
       ];
@@ -53,6 +53,9 @@ export const clientSideResolvers = {
   List: {
     open: () => {
       return false
-    }
+    },
+    settingsMenuOpen: () => {
+      return false
+    }    
   }
 }

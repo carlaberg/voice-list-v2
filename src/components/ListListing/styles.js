@@ -14,6 +14,8 @@ export const Heading1 = styled.h1`
 
 export const Heading2 = styled.h2`
   ${FontMedium}
+  position: relative;
+  width: 100%;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colorAccent};
   margin-bottom: ${({ theme }) => theme.gutter};
@@ -40,14 +42,6 @@ export const Heading2 = styled.h2`
 export const IconGroup = styled.div`
   display: flex;
   align-items: center;
-
-  svg {
-    margin-left: ${({ theme }) => theme.gutterSmall};
-  }
-
-  svg:first-of-type {
-    margin: 0;
-  }
 
   svg:hover {
     fill: ${({ theme }) => theme.colorGray}
@@ -103,13 +97,8 @@ export const ItemIconGroup = styled.div`
   }
 
   svg {
-    margin-left: ${({ theme }) => theme.gutterSmall};
     color: ${({ theme }) => theme.colorGray};
     cursor: pointer;
-  }
-
-  svg:first-of-type {
-    margin: 0;
   }
 
   svg:hover {

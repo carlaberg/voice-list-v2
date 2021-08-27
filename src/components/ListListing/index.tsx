@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useQuery, useMutation, gql } from '@apollo/client'
-import { apolloClient as client } from '../../lib/init-apollo'
 import debounce from 'just-debounce-it'
 import LISTS from '../../queries/lists'
 import DELETE_LIST_AND_ITEMS from '../../queries/deleteListAndItems'
@@ -8,7 +7,8 @@ import DELETE_LIST_ITEM from '../../queries/deleteListItem'
 import UPDATE_LIST_VISIBILITY_FILTER from '../../queries/updateListVisibilityFilter'
 import UPDATE_LIST_ITEM from '../../queries/updateListItem'
 import { groupBy, values } from 'lodash'
-import { Toggle, Modal } from 'carls-components'
+import { Toggle } from 'carls-components'
+import Modal from '../Modal'
 import {
   Heading1,
   Heading2,
@@ -25,6 +25,7 @@ import {
 } from './styles'
 import Spinner from '../Spinner'
 import ApproveOrDeny from '../ApproveOrDeny'
+import ListSettings from '../ListSettings'
 
 const ListListing = () => {
 
@@ -75,8 +76,8 @@ const ListListing = () => {
             className={listsData.userLists.find((item) => item._id == list._id)?.open && 'list--open'}
           >
             <Heading2
-              onClick={(e) => {
-                updateListVisibilityFilter({ variables: { id: list._id } })
+              onClick={(e: any) => {
+                updateListVisibilityFilter({ variables: { id: list._id, input: { open: !list.open} } })
               }}
             >
               {list.name}
@@ -99,7 +100,18 @@ const ListListing = () => {
                     </React.Fragment>
                   )}
                 </Toggle>
-                <VerticalDots />
+                <Toggle>
+                  {({ on, toggle }) => (
+                    <React.Fragment>
+                      <VerticalDots onClick={toggle} />
+                      <Modal toggle={toggle} on={on}>
+                        {() => (
+                          <ListSettings />
+                        )}
+                      </Modal>
+                    </React.Fragment>
+                  )}
+                </Toggle>
                 <MenuArrow />
               </IconGroup>
             </Heading2>

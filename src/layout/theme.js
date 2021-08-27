@@ -9,6 +9,7 @@ class Theme {
     this.colorBlack = '#1E1D1E'
     this.colorWhite = '#FDFDFA'
     this.colorGray = '#B7BCB3'
+    this.colorGrayLight = '#F4F5F7'
     this.colorGrayOpacity = 'rgba(183, 188, 179, 0.2)'
     this.colorGreen = '#B5D99C'
     this.colorBlue = '#80ced7'

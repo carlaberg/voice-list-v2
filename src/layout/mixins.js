@@ -31,6 +31,16 @@ export const HalignSmall = styled.div`
   `}
 `
 
+export const HalignMedium = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 ${theme.gutterMedium};
+
+  ${breakpoint.up('tablet')`
+    padding: 0 ${theme.gutterLarge};
+  `}
+`
+
 export const Section = styled.section`
   padding-top: ${theme.gutter};
 `

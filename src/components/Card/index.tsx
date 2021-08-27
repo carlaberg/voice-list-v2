@@ -1,10 +1,15 @@
 import React from 'react'
 import { Wrapper } from './styles'
 
-const Card = (props) => {
+interface CardProps {
+  className?: any,
+  children?: any
+}
+
+const Card = ({ className, children }: CardProps) => {
   return (
-    <Wrapper>
-      {props.children}
+    <Wrapper className={className}>
+      {children}
     </Wrapper>
   )
 }

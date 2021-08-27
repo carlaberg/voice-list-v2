@@ -6,6 +6,7 @@ const USER_LISTS = gql`
       name
       _id
       open @client
+      settingsMenuOpen @client
       __typename
       items {
         _id

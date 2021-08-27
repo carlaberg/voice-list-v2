@@ -8,6 +8,7 @@ export const resolversInitialState = {
       }
       test
       open
+      settingsMenuOpen
     }
   `,
   data: {
@@ -17,6 +18,7 @@ export const resolversInitialState = {
       items: []
     },
     test: 'kille',
-    open: false
+    open: false,
+    settingsMenuOpen: false
   }
 }

@@ -6,6 +6,12 @@ export const typeDefs = gql`
   }
 
   extend type List {
-    open: Bolean!
+    open: Boolean!
+    settingsMenuOpen: Boolean!
+  }
+
+  input UpdateListVisibiltyInput {
+    open: Boolean
+    settingsMenuOpen: Boolean
   }
 `

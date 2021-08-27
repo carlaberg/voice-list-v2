@@ -1,16 +1,16 @@
 import styled from 'styled-components';
-import { animated } from 'react-spring';
+import { HalignMedium } from '../../layout/mixins'
 
-export const ModalWrapper = styled(animated.div)`
+export const ModalWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9998;
+  display: ${({ hidden }) => hidden ? 'none' : 'flex'};
 `
 
 export const Overlay= styled.div`
@@ -20,10 +20,11 @@ export const Overlay= styled.div`
   background: rgba(0,0,0,0.8);
 `
 
-export const ModalContent = styled(animated.div)`
+export const ModalContent = styled(HalignMedium)`
+  width: 100%;
+  display: flex;
+  justify-content: center;
   position: relative;
-  max-width: 60vw;
-  max-height: 80vh; 
   overflow: hidden;
   z-index: 9999;
 `

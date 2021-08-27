@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 const UPDATE_LIST_VISIBILITY_FILTER = gql`
-    mutation UpdateListVisibilityFilter($id: ID!) {
-        updateListVisibilityFilter(id: $id) @client
+    mutation UpdateListVisibilityFilter($id: ID!, $input: UpdateListVisibiltyInput!) {
+        updateListVisibilityFilter(id: $id, input: $input) @client
     }
 `
 
