@@ -1,30 +1,29 @@
 import styled from 'styled-components';
-import { HalignMedium } from '../../layout/mixins'
+import { breakpoint, HalignMedium } from '../../layout/mixins'
 
 export const ModalWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   z-index: 9998;
   display: ${({ hidden }) => hidden ? 'none' : 'flex'};
-`
-
-export const Overlay= styled.div`
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
+  overflow-y: auto;
   background: rgba(0,0,0,0.8);
 `
 
 export const ModalContent = styled(HalignMedium)`
   width: 100%;
-  display: flex;
-  justify-content: center;
+  margin-top: ${({ theme }) => theme.gutterLarge};
+  margin-bottom: ${({ theme }) => theme.gutterLarge};
   position: relative;
   overflow: hidden;
   z-index: 9999;
+
+  ${breakpoint.up('tablet')`
+    padding: 0;
+  `}  
 `
