@@ -52,6 +52,13 @@ export const FontSmall = `
   font-weight: regular;
 `
 
+export const FontExtraSmall = `
+  font-family: ${theme.fontfamilyPrimary};
+  font-size: 10px;
+  line-height: 1em;
+  font-weight: regular;
+`
+
 export const FontMedium = `
   font-family: ${theme.fontfamilyPrimary};
   font-size: 0.88em;

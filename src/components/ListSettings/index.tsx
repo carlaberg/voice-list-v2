@@ -8,11 +8,13 @@ import {
   Main,
   SidePanel,
   CollaboratorItemGroup,
-  Trash
+  Trash,
+  SettingsGroupTitle,
+  StyledCard
 } from './styles'
 import List from '../List'
-import Card from '../Card'
 import ProfileImage from '../ProfileImage'
+import ButtonSmall from '../ButtonSmall'
 
 const ListSettings = (props) => {
   return (
@@ -23,33 +25,40 @@ const ListSettings = (props) => {
       </Header>
       <Grid>
         <Main>
-          <Card>
+          <StyledCard>
+            <SettingsGroupTitle>Collaborators</SettingsGroupTitle>
+            <Divider />
             <List>
               <List.Item>
                 <CollaboratorItemGroup>
                   <ProfileImage />
-                    Item 1
+                    <div>Carl Åberg</div>
                   <Trash />
                 </CollaboratorItemGroup>
               </List.Item>
               <List.Item>
                 <CollaboratorItemGroup>
                   <ProfileImage />
-                    Item 2
+                    <div>Maja Nilsson</div>
                   <Trash />
                 </CollaboratorItemGroup>
               </List.Item>
               <List.Item>
                 <CollaboratorItemGroup>
                   <ProfileImage />
-                    Item 3
+                    <div>Lilla Vicke Vire</div>
                   <Trash />
                 </CollaboratorItemGroup>
               </List.Item>
             </List>
-          </Card>
+          </StyledCard>
         </Main>
-        <SidePanel>Side panel</SidePanel>
+        <SidePanel>
+          <ButtonSmall theme="black-outline">Collaborators</ButtonSmall>
+          <ButtonSmall theme="black-outline">Collaborators</ButtonSmall>
+          <ButtonSmall theme="black-outline">Collaborators</ButtonSmall>
+          <ButtonSmall theme="black-outline">Collaborators</ButtonSmall>
+        </SidePanel>
       </Grid>
     </Wrapper>
   )

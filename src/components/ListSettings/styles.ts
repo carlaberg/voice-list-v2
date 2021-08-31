@@ -1,7 +1,9 @@
 import styled from 'styled-components'
-import { FontLarge, FontMedium, FontSmall } from '../../layout/mixins'
+import { FontLarge, FontMedium, FontExtraSmall } from '../../layout/mixins'
 import TrashIcon from '../../layout/icons/trash.svg'
 import { Wrapper as ProfileImage } from '../ProfileImage/styles'
+import { trimUnits } from '../../lib/utils'
+import Card from '../Card'
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -27,12 +29,26 @@ export const Grid = styled.div`
   display: flex;
 `
 export const Main = styled.div`
-  width: 70%;
+  width: 75%;
   padding-right: ${({ theme }) => theme.gutter};
 `
 
+export const StyledCard = styled(Card)`
+  border-color: ${({ theme }) => theme.colorGray};
+`
+
 export const SidePanel = styled.div`
-  width: 30%;
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+
+  button {
+    margin-bottom: ${({ theme }) => (trimUnits(theme.gutterSmall) / 2) + 'rem'};
+  
+    &:last-of-type {
+      margin-bottom: 0;       
+    }    
+  }
 `
 
 export const Trash = styled(TrashIcon)`
@@ -50,7 +66,12 @@ export const CollaboratorItemGroup = styled.div`
   ${ProfileImage} {
     width: 3em;
     height: 3em;
-    ${FontSmall}
+    ${FontExtraSmall}
     margin-right: ${({ theme }) => theme.gutterSmall};
   }
+`
+
+export const SettingsGroupTitle = styled.h3`
+  ${FontMedium}
+  margin-bottom: ${({ theme }) => (trimUnits(theme.gutterSmall) / 2) + 'rem'};
 `

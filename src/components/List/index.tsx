@@ -1,5 +1,8 @@
 import React from 'react'
-import { Wrapper } from './styles'
+import { 
+  Wrapper,
+  ListItem
+} from './styles'
 
 const List = ({ children}) => {
   return (
@@ -10,7 +13,7 @@ const List = ({ children}) => {
 }
 
 const Item = ({ children }) => {
-  return <li>{children}</li>
+  return <ListItem>{children}</ListItem>
 }
 
 List.Item = Item
