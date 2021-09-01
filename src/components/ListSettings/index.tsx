@@ -10,7 +10,8 @@ import {
   CollaboratorItemGroup,
   Trash,
   SettingsGroupTitle,
-  StyledCard
+  StyledCard,
+  CollaboratorGrid
 } from './styles'
 import List from '../List'
 import ProfileImage from '../ProfileImage'
@@ -28,7 +29,18 @@ const ListSettings = (props) => {
           <StyledCard>
             <SettingsGroupTitle>Collaborators</SettingsGroupTitle>
             <Divider />
-            <List>
+            <CollaboratorGrid>
+              <ProfileImage />
+              <div>Carl Åberg</div>
+              <Trash />
+              <ProfileImage />
+              <div>Carl Åberg</div>
+              <Trash />
+              <ProfileImage />
+              <div>Carl Åberg</div>
+              <Trash />
+            </CollaboratorGrid>
+            {/* <List>
               <List.Item>
                 <CollaboratorItemGroup>
                   <ProfileImage />
@@ -50,7 +62,7 @@ const ListSettings = (props) => {
                   <Trash />
                 </CollaboratorItemGroup>
               </List.Item>
-            </List>
+            </List> */}
           </StyledCard>
         </Main>
         <SidePanel>

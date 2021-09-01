@@ -75,3 +75,8 @@ export const SettingsGroupTitle = styled.h3`
   ${FontMedium}
   margin-bottom: ${({ theme }) => (trimUnits(theme.gutterSmall) / 2) + 'rem'};
 `
+
+export const CollaboratorGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+`
