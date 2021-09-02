@@ -7,13 +7,12 @@ import {
   Grid,
   Main,
   SidePanel,
-  CollaboratorItemGroup,
   Trash,
   SettingsGroupTitle,
   StyledCard,
-  CollaboratorGrid
+  CollaboratorGrid,
+  CollaboratorName
 } from './styles'
-import List from '../List'
 import ProfileImage from '../ProfileImage'
 import ButtonSmall from '../ButtonSmall'
 
@@ -31,38 +30,15 @@ const ListSettings = (props) => {
             <Divider />
             <CollaboratorGrid>
               <ProfileImage />
-              <div>Carl Åberg</div>
+              <CollaboratorName>Carl Åberg</CollaboratorName>
               <Trash />
               <ProfileImage />
-              <div>Carl Åberg</div>
+              <CollaboratorName>Carl Åberg</CollaboratorName>
               <Trash />
               <ProfileImage />
-              <div>Carl Åberg</div>
+              <CollaboratorName>Carl Åberg</CollaboratorName>
               <Trash />
             </CollaboratorGrid>
-            {/* <List>
-              <List.Item>
-                <CollaboratorItemGroup>
-                  <ProfileImage />
-                    <div>Carl Åberg</div>
-                  <Trash />
-                </CollaboratorItemGroup>
-              </List.Item>
-              <List.Item>
-                <CollaboratorItemGroup>
-                  <ProfileImage />
-                    <div>Maja Nilsson</div>
-                  <Trash />
-                </CollaboratorItemGroup>
-              </List.Item>
-              <List.Item>
-                <CollaboratorItemGroup>
-                  <ProfileImage />
-                    <div>Lilla Vicke Vire</div>
-                  <Trash />
-                </CollaboratorItemGroup>
-              </List.Item>
-            </List> */}
           </StyledCard>
         </Main>
         <SidePanel>

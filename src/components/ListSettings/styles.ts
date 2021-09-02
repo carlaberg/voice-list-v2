@@ -58,18 +58,7 @@ export const Trash = styled(TrashIcon)`
   fill: ${({ theme }) => theme.colorGray};
 `
 
-export const CollaboratorItemGroup = styled.div`
-  ${FontMedium}
-  display: flex;
-  align-items: center;
-
-  ${ProfileImage} {
-    width: 3em;
-    height: 3em;
-    ${FontExtraSmall}
-    margin-right: ${({ theme }) => theme.gutterSmall};
-  }
-`
+export const CollaboratorName = styled.div``
 
 export const SettingsGroupTitle = styled.h3`
   ${FontMedium}
@@ -78,5 +67,18 @@ export const SettingsGroupTitle = styled.h3`
 
 export const CollaboratorGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  row-gap: ${({ theme }) => (trimUnits(theme.gutterSmall) / 2) + 'rem'};
+
+  ${Trash}, ${CollaboratorName} {
+    margin-right: ${({ theme }) => theme.gutter};
+  }
+
+  ${ProfileImage} {
+    width: 3em;
+    height: 3em;
+    ${FontExtraSmall}
+    margin-right: ${({ theme }) => theme.gutterSmall};
+  }
 `
