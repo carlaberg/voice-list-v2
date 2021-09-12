@@ -6,15 +6,10 @@ import {
   Divider,
   Grid,
   Main,
-  SidePanel,
-  Trash,
-  SettingsGroupTitle,
-  StyledCard,
-  CollaboratorGrid,
-  CollaboratorName
+  SidePanel
 } from './styles'
-import ProfileImage from '../ProfileImage'
 import ButtonSmall from '../ButtonSmall'
+import Collaborators from './Collaborators'
 
 const ListSettings = (props) => {
   return (
@@ -25,21 +20,7 @@ const ListSettings = (props) => {
       </Header>
       <Grid>
         <Main>
-          <StyledCard>
-            <SettingsGroupTitle>Collaborators</SettingsGroupTitle>
-            <Divider />
-            <CollaboratorGrid>
-              <ProfileImage />
-              <CollaboratorName>Carl Åberg</CollaboratorName>
-              <Trash />
-              <ProfileImage />
-              <CollaboratorName>Carl Åberg</CollaboratorName>
-              <Trash />
-              <ProfileImage />
-              <CollaboratorName>Carl Åberg</CollaboratorName>
-              <Trash />
-            </CollaboratorGrid>
-          </StyledCard>
+          <Collaborators />
         </Main>
         <SidePanel>
           <ButtonSmall theme="black-outline">Collaborators</ButtonSmall>

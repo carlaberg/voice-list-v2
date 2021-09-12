@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from "react";
-import { ModalWrapper, Overlay, ModalContent } from "./styles";
+import { ModalWrapper, ModalContent } from "./styles";
 import Portal from "../Portal";
 import { useOnClickOutside } from '../../lib/hooks/useClickOutside'
 

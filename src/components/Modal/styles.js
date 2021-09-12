@@ -20,7 +20,6 @@ export const ModalContent = styled(HalignMedium)`
   margin-top: ${({ theme }) => theme.gutterLarge};
   margin-bottom: ${({ theme }) => theme.gutterLarge};
   position: relative;
-  overflow: hidden;
   z-index: 9999;
 
   ${breakpoint.up('tablet')`

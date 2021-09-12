@@ -46,13 +46,18 @@ export const Label = styled.label`
   }
 `
 
-export const Underline = styled.span`
+export const Underline = styled.span<{
+  isFocused: boolean
+}>`
   width: 0;
   height: 1px;
   background: ${({ theme }) => theme.colorBlue};
   display: block;
   transition: width ${({ theme }) => theme.transitionRegular};
   transform: translateY(-1px);
+  ${({ isFocused }) => isFocused && `
+    width: 100%;
+  `}
 `
 
 export const Message = styled.div<{

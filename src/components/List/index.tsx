@@ -4,7 +4,7 @@ import {
   ListItem
 } from './styles'
 
-const List = ({ children}) => {
+const List = ({ children }) => {
   return (
     <Wrapper>
       {children}

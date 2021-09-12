@@ -10,6 +10,29 @@ const user = async (_, args, ctx) => {
   return user
 }
 
+const findUsers = async (_, { input }, ctx) => {
+  if (!ctx.request.userId) {
+    throw new Error('You must logg to access this')
+  }
+
+  if (!input.userId && !input.email) {
+    throw new Error('You must supply either id or email')
+  }
+
+  const filter = {}
+
+  if (input?.userId) {
+    filter._id = input.userId
+  }
+
+  if (input?.email) {
+    filter.email = input.email
+  }
+
+  const users = await ctx.models.user.find(filter);
+  return users
+}
+
 const createUser = async (_, args, ctx) => {
   const existingUser = await ctx.models.user.findOne({email: args.input.email});
 
@@ -55,7 +78,7 @@ const loginUser = async (_, args, ctx) => {
       email: user.email
     }, 
     process.env.JWT_SECRET, 
-    { expiresIn: '1h' }
+    { expiresIn: '2 days' }
   )
 
   return { token, userId: user._id.toString() }
@@ -85,7 +108,8 @@ const updateUser = async (_, args, ctx) => {
 module.exports = {
   Query: {
     user,
-    loggedInUser
+    loggedInUser,
+    findUsers
   },
   Mutation: {
     loginUser,

@@ -16,6 +16,8 @@ interface InputProps {
   placeholder?: string;
   onChange?: (e: any) => void;
   onBlur?: (e: any) => void;
+  onFocus?: (e: any) => void;
+  isFocused?: boolean;
   value: string;
   message?: string;
   valid?: boolean;
@@ -40,7 +42,7 @@ class Input extends React.Component<InputProps, InputState> {
 
   render() {
     const { showIndicators } = this.state
-    const { message, valid, showMessage, label, allowIndicators = true } = this.props
+    const { message, valid, showMessage, label, allowIndicators = true, isFocused = false } = this.props
     
     return (
       <Wrapper className={this.props.className} onClick={() => this.setState({ showIndicators: true })}>
@@ -48,7 +50,7 @@ class Input extends React.Component<InputProps, InputState> {
           {label && <Label>{label}</Label>}
           <StyledInput {...this.props} />
         </InputWrapper>
-        <Underline />
+        <Underline isFocused={isFocused} />
         <Message message={message} show={showMessage}>
           {message}
         </Message>

@@ -24,6 +24,11 @@ const userTypes = gql`
     userId: ID
   }
 
+  input FindUsersInput {
+    userId: String
+    email: String
+  }
+
   input CreateUserInput {
     email: String!
     password: String!
@@ -45,6 +50,7 @@ const userTypes = gql`
 
   type Query {
     user: User!
+    findUsers(input: FindUsersInput!): [User]!
     loggedInUser: LoggedInUserPayload
   }
 
