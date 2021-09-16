@@ -106,7 +106,7 @@ const ListListing = () => {
                       <VerticalDots onClick={toggle} />
                       <Modal toggle={toggle} on={on}>
                         {() => (
-                          <ListSettings />
+                          <ListSettings list={list}/>
                         )}
                       </Modal>
                     </React.Fragment>

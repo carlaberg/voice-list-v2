@@ -11,7 +11,11 @@ import {
 import ButtonSmall from '../ButtonSmall'
 import Collaborators from './Collaborators'
 
-const ListSettings = (props) => {
+interface ListSettingsProps {
+  list?: any;
+}
+
+const ListSettings = ({ list }: ListSettingsProps) => {
   return (
     <Wrapper>
       <Header>
@@ -20,7 +24,7 @@ const ListSettings = (props) => {
       </Header>
       <Grid>
         <Main>
-          <Collaborators />
+          <Collaborators list={list}/>
         </Main>
         <SidePanel>
           <ButtonSmall theme="black-outline">Collaborators</ButtonSmall>

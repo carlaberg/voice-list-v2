@@ -5,6 +5,8 @@ const FIND_USERS = gql`
     findUsers(input: $input) {
       _id
       email
+      firstname
+      lastname
     }
   }
 `

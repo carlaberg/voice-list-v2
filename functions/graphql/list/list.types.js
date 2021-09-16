@@ -6,6 +6,7 @@ const listTypes = gql`
       name: String!
       items: [ListItem]!
       createdBy: User!
+      collaborators: [User]!
     }
 
     input CreateListInput {
@@ -18,7 +19,8 @@ const listTypes = gql`
     }
 
     input UpdateListInput {
-      name: String
+      name: String,
+      collaborators: [User]
     }
 
     extend type Query {

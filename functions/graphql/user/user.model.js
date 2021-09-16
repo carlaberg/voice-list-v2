@@ -9,6 +9,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  firstname: {
+    type: String,
+    required: true
+  },
+  lastname: {
+    type: String,
+    required: true
+  },
   commands: {
     confirm: {
       type: String,

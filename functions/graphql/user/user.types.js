@@ -16,7 +16,8 @@ const userTypes = gql`
   type User {
     _id: ID!
     email: String!
-    password: String,
+    firstname: String!,
+    lastname: String!,
     commands: Commands
   }
 

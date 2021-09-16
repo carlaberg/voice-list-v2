@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useLazyQuery } from '@apollo/client'
+import { useLazyQuery, useMutation } from '@apollo/client'
 import { 
     Wrapper,    
     Trash,
@@ -16,8 +16,13 @@ import ProfileImage from '../../ProfileImage'
 import Search from '../../Search'
 import validate from '../../../utils/validate'
 import FIND_USERS from '../../../queries/findUsers'
+import UPDATE_LIST from '../../../queries/findUsers'
 
-const Collaborators = () => {
+interface CollaboratorsSettingsProps {
+  list?: any;
+}
+
+const Collaborators = ({ list }: CollaboratorsSettingsProps) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const [findUsers, {
@@ -25,6 +30,12 @@ const Collaborators = () => {
     loading: findUsersLoading,
     data: findUsersData
   }] = useLazyQuery(FIND_USERS)
+
+  const [updateList, {
+    error: updateListError,
+    loading: updateListLoading,
+    data: updateListData
+  }] = useMutation(UPDATE_LIST)
 
   const handleQueryChange = () => {
     if (validate.email(searchQuery)) {
@@ -72,18 +83,27 @@ const Collaborators = () => {
               isQueryValid={validate.email(searchQuery)}
             />
             <Search.Results>
-              <CollaboratorGrid>
-                <ProfileImage />
-                <CollaboratorName>Carl Åberg</CollaboratorName>
-                <Trash />
-                <ProfileImage />
-                <CollaboratorName>Carl Åberg</CollaboratorName>
-                <Trash />
-                <ProfileImage />
-                <CollaboratorName>Carl Åberg</CollaboratorName>
-                <Trash />
-              </CollaboratorGrid>
-            </Search.Results>
+            {findUsersLoading && 'searching...'}
+            {findUsersData && findUsersData.findUsers.map((user) => {
+                  return (
+                    <CollaboratorGrid key={user._id} onClick={() => updateList({
+                      variables: {
+                        id: list._id,
+                        input: {
+                          collaborators: [
+                            ...list.collaborators,
+                            user._id
+                          ]
+                        }
+                      }
+                    })}>
+                      <ProfileImage initials={user.firstname.charAt(0)+user.lastname.charAt(0)}/>
+                      <CollaboratorName>{user.firstname} {user.lastname}</CollaboratorName> 
+                  </CollaboratorGrid>
+                  )
+                })}
+
+            </Search.Results> 
           </Search>
       </StyledCard>        
     </Wrapper>
