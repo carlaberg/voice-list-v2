@@ -13,7 +13,11 @@ const listSchema = new mongoose.Schema({
     type: mongoose.SchemaTypes.ObjectId,
     required: true,
     ref: 'user'
-  }
+  },
+  collaborators: [{
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'user'
+  }],
 }, {timestamps: true})
 
 module.exports = mongoose.model('list', listSchema)

@@ -1,11 +1,11 @@
-import React, { Component, ReactNode } from "react";
+import React, { Component, ReactNode, ReactElement } from "react";
 import { ModalWrapper, ModalContent } from "./styles";
 import Portal from "../Portal";
 import { useOnClickOutside } from '../../lib/hooks/useClickOutside'
 
 interface ModalProps {
-  children: () => ReactNode;
-  toggle: () => void;
+  children: () => ReactNode | ReactElement;
+  toggle?: () => void;
   on: boolean,
   closeOnContentClick?: boolean;
 }

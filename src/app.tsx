@@ -1,28 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
+  useLocation
 } from "react-router-dom";
 import MainLayout from './layout/MainLayout';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
+import ListSettings from './components/ListSettings'
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <Router>
-        <MainLayout>
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/dashboard">
-                <Dashboard />
-              </Route>
-            </Switch>      
-        </MainLayout>
-      </Router>
-    );
+const App = () => {
+  //@ts-ignore
+  let location = useLocation();
+  //@ts-ignore
+  const background = location.state && location.state.background;
+
+  console.log(document.referrer)
+
+  const renderModal = () => {
+    if (background || document.referrer === '') {
+      return (
+        <Route exact path="/lists/settings/:id">
+          <ListSettings />
+        </Route>       
+      )
+    }
   }
+
+  return (
+    <MainLayout>
+        <Switch location={background || location}>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/dashboard">
+            <Dashboard />
+          </Route>
+        </Switch> 
+        {renderModal()}
+    </MainLayout>
+  );
 }
+
+export default App

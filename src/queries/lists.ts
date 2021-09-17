@@ -12,6 +12,11 @@ const USER_LISTS = gql`
         _id
         text
       }
+      collaborators {
+        _id
+        firstname
+        lastname
+      }
     }
   }
 `

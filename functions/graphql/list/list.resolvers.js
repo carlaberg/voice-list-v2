@@ -6,8 +6,7 @@ const list = async (_, args, ctx) => {
     throw new Error('You must be logged in to see this list')
   }
   
-  return List.findById(args.id)
-    .exec()
+  return await List.findById(args.id).populate('collaborators')
 }
 
 const createList = async (_, args, ctx) => {
@@ -46,9 +45,8 @@ const userLists = async (_, __, ctx) => {
   if (!ctx.request.userId) {
     throw new Error('You must be logged in to query a list')
   }
-  
-  return List.find({ createdBy: ctx.request.userId })
-    .exec()
+
+  return await List.find({ createdBy: ctx.request.userId }).populate('collaborators');
 }
 
 const updateList = async (_, args, ctx) => {

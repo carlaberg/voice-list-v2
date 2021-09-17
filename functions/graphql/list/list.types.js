@@ -20,7 +20,7 @@ const listTypes = gql`
 
     input UpdateListInput {
       name: String,
-      collaborators: [User]
+      collaborators: [ID]
     }
 
     extend type Query {

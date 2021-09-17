@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { useQuery, useMutation, gql } from '@apollo/client'
+import React, { useState } from 'react'
+import { useHistory, useLocation, Link } from 'react-router-dom'
+import { useQuery, useMutation } from '@apollo/client'
 import debounce from 'just-debounce-it'
 import LISTS from '../../queries/lists'
 import DELETE_LIST_AND_ITEMS from '../../queries/deleteListAndItems'
 import DELETE_LIST_ITEM from '../../queries/deleteListItem'
 import UPDATE_LIST_VISIBILITY_FILTER from '../../queries/updateListVisibilityFilter'
 import UPDATE_LIST_ITEM from '../../queries/updateListItem'
-import { groupBy, values } from 'lodash'
 import { Toggle } from 'carls-components'
 import Modal from '../Modal'
 import {
@@ -30,6 +30,9 @@ import ListSettings from '../ListSettings'
 const ListListing = () => {
 
   let itemInput = React.createRef()
+
+  let history = useHistory()
+  let location = useLocation()
 
   const {
     error: listsError,
@@ -100,18 +103,14 @@ const ListListing = () => {
                     </React.Fragment>
                   )}
                 </Toggle>
-                <Toggle>
-                  {({ on, toggle }) => (
-                    <React.Fragment>
-                      <VerticalDots onClick={toggle} />
-                      <Modal toggle={toggle} on={on}>
-                        {() => (
-                          <ListSettings list={list}/>
-                        )}
-                      </Modal>
-                    </React.Fragment>
-                  )}
-                </Toggle>
+                <Link
+                  to={{
+                    pathname: `/lists/settings/${list._id}`,
+                    state: { background: location }
+                  }}
+                >
+                  <VerticalDots />
+                </Link>
                 <MenuArrow />
               </IconGroup>
             </Heading2>
