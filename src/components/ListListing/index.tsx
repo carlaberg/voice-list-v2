@@ -3,6 +3,7 @@ import { useHistory, useLocation, Link } from 'react-router-dom'
 import { useQuery, useMutation } from '@apollo/client'
 import debounce from 'just-debounce-it'
 import LISTS from '../../queries/lists'
+import COLLABORATOR_LISTS from '../../queries/collaboratorLists'
 import DELETE_LIST_AND_ITEMS from '../../queries/deleteListAndItems'
 import DELETE_LIST_ITEM from '../../queries/deleteListItem'
 import UPDATE_LIST_VISIBILITY_FILTER from '../../queries/updateListVisibilityFilter'
@@ -25,7 +26,6 @@ import {
 } from './styles'
 import Spinner from '../Spinner'
 import ApproveOrDeny from '../ApproveOrDeny'
-import ListSettings from '../ListSettings'
 
 const ListListing = () => {
 
@@ -39,6 +39,14 @@ const ListListing = () => {
     loading: listsLoading,
     data: listsData
   } = useQuery(LISTS)
+
+  const {
+    error: collaboratorListsError,
+    loading: collaboratorListsLoading,
+    data: collaboratorListsData
+  } = useQuery(COLLABORATOR_LISTS)
+
+  console.log('collaborator lists', collaboratorListsData);
 
   const [deleteListAndItems, { data: deleteListAndItemsData }] = useMutation(
     DELETE_LIST_AND_ITEMS, {

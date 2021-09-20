@@ -9,6 +9,22 @@ const list = async (_, args, ctx) => {
   return await List.findById(args.id).populate('collaborators')
 }
 
+const userLists = async (_, __, ctx) => {
+  if (!ctx.request.userId) {
+    throw new Error('You must be logged in to query a list')
+  }
+
+  return await List.find({ createdBy: ctx.request.userId }).populate('collaborators');
+}
+
+const collaboratorLists = async (_, __, ctx) => {
+  if (!ctx.request.userId) {
+    throw new Error('You must be logged in to query a list')
+  }
+
+  return await List.find({ 'collaborators._id': ctx.request.userId }).populate('collaborators');
+}
+
 const createList = async (_, args, ctx) => {
   // 1. Check if user is logged in
   
@@ -39,14 +55,6 @@ const createListWithItems = async (_, args, ctx) => {
     })
     await ListItem.create(listItems)
     return list
-}
-
-const userLists = async (_, __, ctx) => {
-  if (!ctx.request.userId) {
-    throw new Error('You must be logged in to query a list')
-  }
-
-  return await List.find({ createdBy: ctx.request.userId }).populate('collaborators');
 }
 
 const updateList = async (_, args, ctx) => {
@@ -84,7 +92,8 @@ const deleteListAndItems = async (_, args, ctx) => {
 module.exports = {
   Query: {
     list,
-    userLists
+    userLists,
+    collaboratorLists
   },
   Mutation: {
     createList,

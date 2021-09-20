@@ -26,6 +26,7 @@ const listTypes = gql`
     extend type Query {
       list(id: ID!): List!
       userLists: [List!]!
+      collaboratorLists: [List!]!
     }
 
     extend type Mutation {
